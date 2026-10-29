@@ -1,8 +1,5 @@
 *.log
 .DS_Store
-.env
-.env.*
-!.env.example
 .phpactor.json
 .phpunit.result.cache
 /.codex
@@ -14,12 +11,6 @@
 /.zed
 /auth.json
 /node_modules
-/public/build
-/public/fonts-manifest.dev.json
-/public/hot
-/public/storage
-/storage/*.key
-/storage/pail
 /vendor
 _ide_helper.php
 Homestead.json

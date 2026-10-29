@@ -1,0 +1,116 @@
+{
+ "url": "http://192.168.2.165:5174/product/140",
+ "ready": true,
+ "title": "Waplia - Multi Vendor Ecommerce",
+ "h1": {
+  "text": "Demo Colour Kids Tee",
+  "x": 24,
+  "y": 1389,
+  "w": 179,
+  "h": 25,
+  "font-size": "18px",
+  "font-weight": "500",
+  "color": "oklch(0.235 0.018 52)",
+  "text-transform": "capitalize",
+  "letter-spacing": "0.096px"
+ },
+ "breadcrumb": "Home/Fashion/Kids/Demo Colour Kids Tee",
+ "price": {
+  "text": "₹449.00",
+  "font-size": "18px",
+  "font-weight": "400",
+  "letter-spacing": "1.3px",
+  "color": "oklch(0.235 0.018 52)"
+ },
+ "mrpBlock": "₹449.00MRP₹699.0036% OFF",
+ "gallery": {
+  "x": 24,
+  "y": 241,
+  "w": 720,
+  "h": 1008,
+  "img": {
+   "x": 24,
+   "y": 241,
+   "w": 720,
+   "h": 1008,
+   "loaded": true
+  }
+ },
+ "thumbnails": {
+  "count": 3,
+  "x": 24,
+  "y": 1261,
+  "w": 66,
+  "h": 92
+ },
+ "sticky": {
+  "position": "static",
+  "top": "auto"
+ },
+ "mobileBar": {
+  "present": true,
+  "display": "block"
+ },
+ "pillIdle": {
+  "text": "4-5Y",
+  "x": 24,
+  "y": 1761,
+  "w": 61,
+  "h": 46,
+  "border-radius": "28px",
+  "border": "1px solid oklab(0.405632 0.00912714 -0.0232862 / 0.3)",
+  "background-color": "rgb(255, 255, 255)",
+  "color": "oklch(0.235 0.018 52)",
+  "font-size": "14px"
+ },
+ "buyBox": [],
+ "accordions": [
+  {
+   "text": "Shop",
+   "expanded": "false"
+  },
+  {
+   "text": "Product DetailsStyle No: DEMO-3-CWVO03-SKY-45Y · Brand: Kind",
+   "expanded": "false"
+  },
+  {
+   "text": "Style & Fit TipsDemo item to test colour and size variants —",
+   "expanded": "false"
+  },
+  {
+   "text": "Cancellation, Shipping & ReturnsReturn this item within 15 d",
+   "expanded": "false"
+  }
+ ],
+ "sections": [
+  {
+   "text": "Customer Reviews",
+   "font-size": "24px",
+   "font-weight": "500"
+  },
+  {
+   "text": "Customer Reviews",
+   "font-size": "20px",
+   "font-weight": "600"
+  },
+  {
+   "text": "Questions & answers",
+   "font-size": "24px",
+   "font-weight": "500"
+  },
+  {
+   "text": "Questions & Answers0",
+   "font-size": "20px",
+   "font-weight": "700"
+  },
+  {
+   "text": "New drops, private offers and more",
+   "font-size": "32px",
+   "font-weight": "700"
+  }
+ ],
+ "viewport": {
+  "innerWidth": 768,
+  "innerHeight": 1024
+ }
+}

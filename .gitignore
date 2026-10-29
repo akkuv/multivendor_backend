@@ -1,0 +1,39 @@
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+vendor/
+
+# Build outputs
+.next/
+dist/
+build/
+coverage/
+
+# Logs and caches
+*.log
+.DS_Store
+.DS_Store?
+.cache/
+
+# Local databases and backups
+*.sqlite
+*.sqlite3
+*.db
+*.sql
+*.dump
+*.bak
+
+# Private keys and certificates
+*.pem
+*.key
+id_rsa
+id_ed25519
+
+# Local tooling
+.vercel/
+.idea/
+.vscode/
