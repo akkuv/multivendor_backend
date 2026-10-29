@@ -11,6 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Disable FK checks so the table can be (re)created even when stale
+        // orphaned rows exist in a partially-imported database.
+        \Illuminate\Support\Facades\DB::statement('SET FOREIGN_KEY_CHECKS=0');
+
         Schema::create('admin_financial_ledgers', function (Blueprint $table) {
             $table->id();
             $table->string('type')->index();
@@ -23,6 +27,8 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
         });
+
+        \Illuminate\Support\Facades\DB::statement('SET FOREIGN_KEY_CHECKS=1');
     }
 
     /**
