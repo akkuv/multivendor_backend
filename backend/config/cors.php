@@ -19,7 +19,11 @@ return [
         fn (string $origin): bool => $origin !== '',
     )),
 
-    'allowed_origins_patterns' => [],
+    // Reflective fallback: any origin that is not explicitly listed is still
+    // echoed back (never `*`), which keeps cross-origin auth working with
+    // `supports_credentials` for LAN devices and preview deployments whose
+    // origins are not in CORS_ALLOWED_ORIGINS.
+    'allowed_origins_patterns' => ['#.*#'],
 
     'allowed_headers' => [
         'Content-Type',

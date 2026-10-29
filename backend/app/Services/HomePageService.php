@@ -41,20 +41,27 @@ class HomePageService
     {
         $this->allowSharedFallbacks = $page === null;
 
-        $sections = HomepageSection::query()
-            ->when(
-                $page,
-                fn (Builder $query) => $query->where('custom_page_id', $page->id),
-                fn (Builder $query) => $query->whereNull('custom_page_id'),
-            )
-            ->where('is_active', true)
-            ->orderBy('sort_order')
-            ->orderBy('id')
-            ->get();
+        try {
+            $sections = HomepageSection::query()
+                ->when(
+                    $page,
+                    fn (Builder $query) => $query->where('custom_page_id', $page->id),
+                    fn (Builder $query) => $query->whereNull('custom_page_id'),
+                )
+                ->where('is_active', true)
+                ->orderBy('sort_order')
+                ->orderBy('id')
+                ->get();
+        } catch (\Throwable $e) {
+            report($e);
+
+            return ['sections' => []];
+        }
 
         return [
             'sections' => $sections
                 ->map(fn (HomepageSection $section) => $this->resolveSection($section))
+                ->filter()
                 ->values()
                 ->all(),
         ];
@@ -129,6 +136,10 @@ class HomePageService
                 'sort_order' => $section->sort_order,
                 'content' => $content,
             ];
+        } catch (\Throwable $e) {
+            report($e);
+
+            return null;
         } finally {
             $this->allowSharedFallbacks = $previousFallbacks;
             $this->scopedCategoryIds = null;
