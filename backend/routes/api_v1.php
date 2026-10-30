@@ -37,6 +37,7 @@ use App\Http\Controllers\Api\V1\SuperAdmin\RefundController as AdminRefundContro
 use App\Http\Controllers\Api\V1\SuperAdmin\ReportController as AdminReportController;
 use App\Http\Controllers\Api\V1\SuperAdmin\ReturnController as AdminReturnController;
 use App\Http\Controllers\Api\V1\SuperAdmin\ReviewController as AdminReviewController;
+use App\Http\Controllers\Api\V1\SuperAdmin\WishlistInsightController as AdminWishlistInsightController;
 use App\Http\Controllers\Api\V1\SuperAdmin\SecuritySettingController as AdminSecuritySettingController;
 use App\Http\Controllers\Api\V1\SuperAdmin\SettlementController as AdminSettlementController;
 use App\Http\Controllers\Api\V1\SuperAdmin\ShipmentController as AdminShipmentController;
@@ -391,6 +392,14 @@ Route::middleware(['auth:sanctum', 'role:SUPER_ADMIN', 'active'])->prefix('admin
     Route::delete('reviews/{review}/report', [AdminReviewController::class, 'unreport']);
     Route::put('reviews/{review}/images', [AdminReviewController::class, 'moderateImages']);
     Route::delete('reviews/{review}', [AdminReviewController::class, 'destroy']);
+
+    // Wishlist insights
+    Route::get('wishlist/insights/stats', [AdminWishlistInsightController::class, 'stats']);
+    Route::get('wishlist/insights', [AdminWishlistInsightController::class, 'index']);
+    Route::get('wishlist/insights/customers/{user}', [AdminWishlistInsightController::class, 'customerDetail']);
+    Route::get('wishlist/insights/recommendations/{product}', [AdminWishlistInsightController::class, 'recommendations']);
+    Route::post('wishlist/insights/suggest', [AdminWishlistInsightController::class, 'sendSuggestion']);
+    Route::get('wishlist/insights/suggestions', [AdminWishlistInsightController::class, 'suggestionHistory']);
 
     Route::get('vendor-reviews', [AdminVendorReviewController::class, 'index']);
     Route::get('vendor-reviews/{vendorReview}', [AdminVendorReviewController::class, 'show']);

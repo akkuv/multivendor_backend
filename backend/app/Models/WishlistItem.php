@@ -19,6 +19,8 @@ class WishlistItem extends Model
         'user_id',
         'product_id',
         'price_at_add',
+        'status',
+        'removed_at',
         'notify_price_drops',
         'notify_back_in_stock',
         'price_drop_notified',
@@ -27,11 +29,27 @@ class WishlistItem extends Model
 
     protected $casts = [
         'price_at_add' => 'decimal:2',
+        'status' => 'string',
+        'removed_at' => 'datetime',
         'notify_price_drops' => 'boolean',
         'notify_back_in_stock' => 'boolean',
         'price_drop_notified' => 'boolean',
         'back_in_stock_notified' => 'boolean',
     ];
+
+    public const STATUS_ACTIVE = 'active';
+
+    public const STATUS_REMOVED = 'removed';
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', self::STATUS_ACTIVE);
+    }
+
+    public function scopeRemoved($query)
+    {
+        return $query->where('status', self::STATUS_REMOVED);
+    }
 
     public function user(): BelongsTo
     {

@@ -9,6 +9,7 @@ use App\Http\Resources\V1\CartResource;
 use App\Http\Resources\V1\WishlistNotificationResource;
 use App\Http\Resources\V1\WishlistResource;
 use App\Models\Product;
+use App\Models\WishlistItem;
 use App\Services\Cart\CartService;
 use App\Services\Cart\InvalidCartException;
 use Illuminate\Http\JsonResponse;
@@ -22,6 +23,7 @@ class WishlistController extends Controller
     {
         $wishlist = $request->user()
             ->wishlistItems()
+            ->active()
             ->with([
                 'product' => fn ($q) => $q
                     ->with('vendor', 'category', 'brand')
@@ -54,7 +56,11 @@ class WishlistController extends Controller
             ->wishlistItems()
             ->updateOrCreate(
                 ['product_id' => $product->id],
-                ['price_at_add' => $product->price],
+                [
+                    'price_at_add' => $product->price,
+                    'status' => WishlistItem::STATUS_ACTIVE,
+                    'removed_at' => null,
+                ],
             );
 
         $item->loadMissing('product.vendor', 'product.category', 'product.brand');
@@ -67,14 +73,20 @@ class WishlistController extends Controller
         $request->user()
             ->wishlistItems()
             ->where('product_id', $product->id)
-            ->delete();
+            ->update([
+                'status' => WishlistItem::STATUS_REMOVED,
+                'removed_at' => now(),
+            ]);
 
         return $this->success(__('Product removed from wishlist.'));
     }
 
     public function clear(Request $request): JsonResponse
     {
-        $request->user()->wishlistItems()->delete();
+        $request->user()->wishlistItems()->active()->update([
+            'status' => WishlistItem::STATUS_REMOVED,
+            'removed_at' => now(),
+        ]);
 
         return $this->success(__('Wishlist cleared successfully.'));
     }
@@ -89,7 +101,10 @@ class WishlistController extends Controller
                 $request->integer('quantity', 1),
             );
 
-            $request->user()->wishlistItems()->where('product_id', $product->id)->delete();
+            $request->user()->wishlistItems()->where('product_id', $product->id)->update([
+                'status' => WishlistItem::STATUS_REMOVED,
+                'removed_at' => now(),
+            ]);
 
             return $this->success(__('Product moved to cart.'), new CartResource($cart));
         } catch (InvalidCartException $e) {
