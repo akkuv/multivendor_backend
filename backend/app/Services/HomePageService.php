@@ -385,6 +385,7 @@ class HomePageService
         $items = array_map(
             fn (array $item): array => [
                 'icon' => (string) ($item['icon'] ?? 'gem'),
+                'icon_image' => isset($item['icon_image']) && $item['icon_image'] !== '' ? (string) $item['icon_image'] : null,
                 'title' => (string) ($item['title'] ?? ''),
                 'description' => (string) ($item['description'] ?? ''),
             ],
