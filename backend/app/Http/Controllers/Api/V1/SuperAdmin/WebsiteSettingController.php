@@ -110,6 +110,9 @@ class WebsiteSettingController extends Controller
                 'show_all' => filter_var($departments['show_all'] ?? true, FILTER_VALIDATE_BOOLEAN),
                 'show_shop_all' => filter_var($departments['show_shop_all'] ?? true, FILTER_VALIDATE_BOOLEAN),
                 'show_collections' => filter_var($departments['show_collections'] ?? true, FILTER_VALIDATE_BOOLEAN),
+                'all_icon' => $this->nullableUrl($departments['all_icon'] ?? null),
+                'shop_all_icon' => $this->nullableUrl($departments['shop_all_icon'] ?? null),
+                'collections_icon' => $this->nullableUrl($departments['collections_icon'] ?? null),
             ],
         ];
     }
@@ -163,6 +166,9 @@ class WebsiteSettingController extends Controller
             'show_all' => filter_var($departments['show_all'] ?? true, FILTER_VALIDATE_BOOLEAN),
             'show_shop_all' => filter_var($departments['show_shop_all'] ?? true, FILTER_VALIDATE_BOOLEAN),
             'show_collections' => filter_var($departments['show_collections'] ?? true, FILTER_VALIDATE_BOOLEAN),
+            'all_icon' => $this->nullableUrl($departments['all_icon'] ?? null),
+            'shop_all_icon' => $this->nullableUrl($departments['shop_all_icon'] ?? null),
+            'collections_icon' => $this->nullableUrl($departments['collections_icon'] ?? null),
         ];
     }
 
